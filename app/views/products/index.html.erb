@@ -1,11 +1,28 @@
-<h1>Products</h1>
+<%= render "header"%>
 
-<%= link_to "New product", new_product_path %>
+<% if notice %>
+  <div class="text-success mx-3 fs-4">
+    <%= notice %>
+  </div>
+<% end %>
+
+<h1 class="mx-3">投稿一覧</h1>
+<%= link_to "投稿をする", new_product_path ,class: "btn btn-primary mx-5 my-3 fs-2"%>
 
 <div id="products">
   <% @products.each do |product| %>
+  <div class="p-2 mb-2 border mx-5 fs-4">
+    <h2 class="panel-title">
+      <%= product.name %> 
+    </h2>
+    <p>
+      <%= product.content %>  
+    </p>
+
     <div>
-        <%= link_to product.name+product.content, product %>
+        <%= link_to "詳細", product %>
     </div>
+    
+  </div>
   <% end %>
 </div>

@@ -1,9 +1,8 @@
 <%= render "header"%>
 
-<h1 class="mx-3">新規投稿</h1>
+<h1 class="mx-3">編集</h1>
 
 <%= render "form", product: @product %>
-
 <div class="my-2 fs-3 mx-5">
-<%= link_to "もどる", products_path %>
+<%= link_to "やめる", @product %>
 </div>

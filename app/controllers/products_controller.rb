@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
-    @products = Product.all
+    @products = Product.all.order("created_at DESC")
   end
 
   def show
@@ -11,18 +11,20 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.name = '名無し'
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product
+      redirect_to products_path, notice: "投稿しました"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @product.update(product_params)
@@ -34,7 +36,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_path
+    redirect_to products_path, notice: "削除しました"
   end
 
   private
