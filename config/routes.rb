@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root "hello#index"
+  root "products#index"
+  resources :products
 end
